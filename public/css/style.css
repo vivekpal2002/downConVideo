@@ -1,0 +1,106 @@
+body{
+    background: #EEAECA;
+    background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+}
+
+.thirteen h1 {
+    position:relative; font-size:20px; font-weight:700;  letter-spacing:0px; width:200px; text-align:center; margin:auto; white-space:nowrap; border:2px solid #222;padding:5px 11px 3px 11px; background-color: whitesmoke;
+  }
+  .thirteen h1:before, .thirteen h1:after {
+      background-color: #c50000;
+      position:absolute; 
+      content: '';
+      height: 7px;
+  
+      width: 7px; border-radius:50%;
+      bottom: 12px;
+  }
+  .thirteen h1:before {
+     left:-20px;
+  }
+  .thirteen h1:after {
+     right:-20px;
+  }
+  /* ------- Helper Styles -------------*/
+  *,
+  *:before,
+  *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+.container{
+    margin: 30px;
+    padding: 10px;
+}
+/* General styling for the marquee */
+marquee {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    padding: 10px 0;
+    margin-bottom: 20px;
+  }
+  
+  /* Container styling */
+  div.form-container {
+    margin: 20px auto;
+    background-color: #a19e9e;
+    width: 90%;
+    max-width: 600px;
+    height: auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form styling */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    background-color: transparent;
+  }
+  
+  /* Input field styling */
+  input.cls_input {
+    width: 80%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  input.upload_video {
+    width:auto;
+    padding: 12px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  /* Button styling */
+  .third {
+    border-color: blue;
+    color: #fff;
+    box-shadow: 0 0 40px 40px blue inset, 0 0 0 0 blue;
+    transition: all 150ms ease-in-out;
+    width: auto;
+    height: 50px;
+    font-size: 20px;
+    margin: 5px;
+    
+    &:hover {
+      box-shadow: 0 0 10px 0 blue inset, 0 0 10px 4px blue;
+      color:black;
+    }
+  }
+
+  .video_player{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px; 
+  }
