@@ -20,7 +20,8 @@
         <form onsubmit="return false;" enctype="multipart/form-data">
             @csrf
             <h3>Paste Video Link:</h3>
-            <input type="text" name="link_video_1" class="link_video_1 cls_input" placeholder="https://example.com/video.mp4">
+            <input type="text" name="link_video_1" class="link_video_1 cls_input"
+                placeholder="https://example.com/video.mp4">
             <p>OR Upload Video:</p>
             <input type="file" class="upload_video" accept="video/mp4">
             <button type="submit" class="cls_gif_submit third">Convert to GIF</button>
@@ -47,7 +48,12 @@
         $('.cls_gif_submit').click(function() {
             let formData = new FormData();
             formData.append('_token', '{{ csrf_token() }}');
-            formData.append('link_video_1', $('.link_video_1').val());
+
+            // Add link only if filled
+            let link = $('.link_video_1').val();
+            if (link) {
+                formData.append('link_video_1', link);
+            }
 
             // If user uploads a file
             if ($('.upload_video')[0].files.length > 0) {
@@ -58,8 +64,8 @@
                 type: 'POST',
                 url: '/convert-to-gif',
                 data: formData,
-                processData: false, // prevent jQuery from processing
-                contentType: false, // prevent jQuery from setting content type
+                processData: false,
+                contentType: false,
                 success: function(response) {
                     $('.video_player').html(response);
                 },

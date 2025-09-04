@@ -11,19 +11,21 @@ class ConvertController extends Controller
     public function mp4ToGif(Request $request)
     {
         // dd($request->all());
+        // dd($request->all(), $request->file('upload_video'));
+
         $filePath = null;
         $fileName = uniqid().'.mp4';
 
         // CASE 1: User gives social media link
         if ($request->has('link_video_1') && $request->link_video_1 !== null) {
-            $url = $request->link_video_1;
+            $videoUrl = $request->link_video_1;
 
             // Example: Instagram API call
             $response = Http::withHeaders([
-                'X-RapidAPI-Key'  => env('RAPIDAPI_KEY'),
-                'X-RapidAPI-Host' => 'instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com'
-            ])->get('https://instagram-downloader-download-instagram-videos-stories1.p.rapidapi.com/', [
-                'url' => $url,
+                'x-rapidapi-host' => 'pinterest-video-and-image-downloader.p.rapidapi.com',
+                'x-rapidapi-key'  => env('RAPIDAPI_KEY'),
+            ])->get('https://pinterest-video-and-image-downloader.p.rapidapi.com/pinterest', [
+                'url' => $videoUrl,
             ]);
 
             if ($response->successful()) {
@@ -43,7 +45,7 @@ class ConvertController extends Controller
         }
 
         // CASE 2: User uploads video
-        elseif ($request->hasFile('upload_video')) {
+        elseif ( $request->file('upload_video')) {
             $file = $request->file('upload_video');
             $filePath = storage_path('app/public/'.$fileName);
             $file->move(storage_path('app/public/'), $fileName);
@@ -67,6 +69,9 @@ class ConvertController extends Controller
             10 // duration in seconds
         )->save($gifPath);
 
-        return response()->download($gifPath)->deleteFileAfterSend(true);
-    }
+        return '<div>
+        <img src="'.asset('storage/'.$gifName).'" style="max-width:100%;border:2px solid #222;"/><br>
+         <a href="'.asset('storage/'.$gifName).'" download="'.$gifName.'" class="btn btn-primary">Download GIF</a>
+         </div>';
+}
 }
